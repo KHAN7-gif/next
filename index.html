@@ -1,1 +1,29 @@
-<!doctype html><html lang="ms"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NEXT — Office Tools</title><style>body{margin:0;font-family:system-ui;background:#f5f5f9;color:#292a33}#boot{padding:48px;text-align:center}#boot strong{display:block;font-size:28px;margin-bottom:12px}#boot p{color:#64748b}#boot code{display:block;max-width:800px;margin:20px auto;white-space:pre-wrap;overflow-wrap:anywhere;color:#b42318}</style></head><body><div id="root"><div id="boot"><strong>NEXT OFFICE TOOLS</strong><p>Sedang memuatkan aplikasi...</p></div></div><script type="module">function showError(err){const root=document.getElementById('root');if(root){root.innerHTML='<div id="boot"><strong>NEXT OFFICE TOOLS</strong><p>Aplikasi gagal dimuatkan. Sila kongsi mesej ralat di bawah.</p><code></code></div>';root.querySelector('code').textContent=String(err?.stack||err?.message||err)}}window.addEventListener('error',e=>showError(e.error||e.message));window.addEventListener('unhandledrejection',e=>showError(e.reason));import('./src/main.jsx').catch(showError);</script></body></html>
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEXT — Office Tools</title>
+  <style>
+    body{margin:0;font-family:system-ui,sans-serif;background:#f5f5f9;color:#292a33}
+    #boot{padding:48px 20px;text-align:center}
+    #boot strong{display:block;font-size:28px;margin-bottom:12px}
+    #boot p{color:#64748b}
+    #boot code{display:block;max-width:800px;margin:20px auto;white-space:pre-wrap;overflow-wrap:anywhere;color:#b42318}
+  </style>
+  <script>
+    function nextStartupError(error){
+      const root=document.getElementById('root');
+      if(!root||!root.querySelector('#boot'))return;
+      root.innerHTML='<div id="boot"><strong>NEXT OFFICE TOOLS</strong><p>Aplikasi gagal dimuatkan. Sila kongsi mesej ralat di bawah.</p><code></code></div>';
+      root.querySelector('code').textContent=String(error?.stack||error?.message||error);
+    }
+    window.addEventListener('error',e=>nextStartupError(e.error||e.message));
+    window.addEventListener('unhandledrejection',e=>nextStartupError(e.reason));
+  </script>
+</head>
+<body>
+  <div id="root"><div id="boot"><strong>NEXT OFFICE TOOLS</strong><p>Sedang memuatkan aplikasi...</p></div></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

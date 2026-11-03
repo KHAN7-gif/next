@@ -15,11 +15,12 @@
     function nextStartupError(error){
       const root=document.getElementById('root');
       if(!root||!root.querySelector('#boot'))return;
-      root.innerHTML='<div id="boot"><strong>NEXT OFFICE TOOLS</strong><p>Aplikasi gagal dimuatkan. Sila kongsi mesej ralat di bawah.</p><code></code></div>';
+      root.innerHTML='<div id="boot"><strong>NEXT OFFICE TOOLS</strong><p>Aplikasi gagal dimuatkan. Sila cuba muat semula.</p><button id="retry" type="button" style="border:0;background:#ed302d;color:white;border-radius:8px;padding:12px 20px;font-size:16px">Cuba semula</button><code></code></div>';root.querySelector('#retry').onclick=()=>{const url=new URL(location.href);url.searchParams.set('refresh',Date.now());location.replace(url.href)};
       root.querySelector('code').textContent=String(error?.stack||error?.message||error);
     }
     window.addEventListener('error',e=>nextStartupError(e.error||e.message));
     window.addEventListener('unhandledrejection',e=>nextStartupError(e.reason));
+    window.addEventListener('DOMContentLoaded',()=>{const moduleScript=document.querySelector('script[type="module"]');if(moduleScript)moduleScript.addEventListener('error',()=>nextStartupError('Fail JavaScript gagal dimuatkan. Semak sambungan internet atau cache pelayar.'));setTimeout(()=>{if(document.querySelector('#boot'))nextStartupError('Aplikasi mengambil masa terlalu lama untuk dimuatkan. Cuba semula atau buka dalam Safari.')},15000)});
   </script>
 </head>
 <body>
